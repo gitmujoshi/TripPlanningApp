@@ -118,6 +118,114 @@ PlanningApp/
 - MongoDB (v4.4 or higher)
 - npm or yarn
 
+## Dependencies Installation
+
+### System Dependencies
+
+#### macOS
+```bash
+# Install Homebrew if not already installed
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Install Node.js
+brew install node
+
+# Install MongoDB
+brew tap mongodb/brew
+brew install mongodb-community
+
+# Install development tools
+brew install git
+```
+
+#### Linux (Ubuntu/Debian)
+```bash
+# Update package list
+sudo apt update
+
+# Install Node.js
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs
+
+# Install MongoDB
+curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+sudo apt update
+sudo apt install -y mongodb-org
+
+# Install development tools
+sudo apt install -y git
+```
+
+### Project Dependencies
+
+#### Backend Dependencies
+```bash
+cd server
+
+# Install backend dependencies
+npm install express mongoose dotenv cors jsonwebtoken bcryptjs
+npm install --save-dev typescript ts-node-dev @types/node @types/express @types/cors @types/jsonwebtoken @types/bcryptjs @types/mongoose
+
+# Create tsconfig.json if not exists
+npx tsc --init
+```
+
+Key backend dependencies:
+- `express`: Web framework
+- `mongoose`: MongoDB object modeling
+- `dotenv`: Environment variables management
+- `cors`: Cross-origin resource sharing
+- `jsonwebtoken`: JWT authentication
+- `bcryptjs`: Password hashing
+- `typescript`: TypeScript support
+- `ts-node-dev`: TypeScript development server
+
+#### Frontend Dependencies
+```bash
+cd client
+
+# Install frontend dependencies
+npm install react react-dom @mui/material @mui/icons-material @emotion/react @emotion/styled
+npm install @mui/x-date-pickers date-fns axios react-router-dom
+npm install --save-dev typescript @types/react @types/react-dom @types/react-router-dom
+
+# Additional development dependencies
+npm install --save-dev @testing-library/react @testing-library/jest-dom @testing-library/user-event
+```
+
+Key frontend dependencies:
+- `react` & `react-dom`: React framework
+- `@mui/material` & `@mui/icons-material`: Material-UI components
+- `@emotion/react` & `@emotion/styled`: Styling solution
+- `@mui/x-date-pickers` & `date-fns`: Date handling
+- `axios`: HTTP client
+- `react-router-dom`: Routing
+- `typescript`: TypeScript support
+- `@testing-library/*`: Testing utilities
+
+### Verify Installation
+
+1. Verify Node.js installation:
+```bash
+node --version  # Should be v14 or higher
+npm --version   # Should be v6 or higher
+```
+
+2. Verify MongoDB installation:
+```bash
+mongod --version  # Should be v4.4 or higher
+```
+
+3. Verify project dependencies:
+```bash
+# In server directory
+npm list --depth=0
+
+# In client directory
+npm list --depth=0
+```
+
 ## Setup Instructions
 
 ### 1. MongoDB Setup
