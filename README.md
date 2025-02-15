@@ -2,6 +2,98 @@
 
 A full-stack application for planning and managing your trips, built with React, TypeScript, Node.js, Express, and MongoDB.
 
+## Architecture Overview
+
+### System Architecture
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│                 │     │                 │     │                 │
+│  React Client   │────▶│  Express Server │────▶│    MongoDB     │
+│                 │     │                 │     │                 │
+└─────────────────┘     └─────────────────┘     └─────────────────┘
+```
+
+### Component Architecture
+
+#### Frontend
+```
+client/
+├── src/
+│   ├── components/        # Reusable UI components
+│   ├── contexts/         # React Context providers
+│   ├── hooks/           # Custom React hooks
+│   ├── pages/           # Page components
+│   ├── services/        # API service layer
+│   ├── types/           # TypeScript type definitions
+│   ├── utils/           # Utility functions
+│   └── App.tsx          # Root component
+```
+
+#### Backend
+```
+server/
+├── src/
+│   ├── models/          # Mongoose models
+│   ├── routes/          # Express routes
+│   ├── middleware/      # Custom middleware
+│   ├── config/          # Configuration
+│   ├── types/          # TypeScript types
+│   ├── utils/          # Utility functions
+│   └── server.ts       # Entry point
+```
+
+## Design Details
+
+### Data Models
+
+#### User
+```typescript
+{
+  _id: ObjectId,
+  email: string,
+  password: string (hashed),
+  name: string,
+  createdAt: Date,
+  updatedAt: Date
+}
+```
+
+#### Trip
+```typescript
+{
+  _id: ObjectId,
+  userId: ObjectId,
+  destination: string,
+  country: string,
+  startDate: Date,
+  endDate: Date,
+  description: string,
+  image: string,
+  budget: {
+    amount: number,
+    currency: string
+  },
+  activities: Array<string>,
+  accommodation: {
+    name: string,
+    address: string,
+    checkIn: Date,
+    checkOut: Date,
+    bookingReference: string
+  },
+  transportation: {
+    type: string,
+    bookingReference: string,
+    departureTime: Date,
+    arrivalTime: Date,
+    notes: string
+  },
+  status: 'planned' | 'ongoing' | 'completed' | 'cancelled',
+  createdAt: Date,
+  updatedAt: Date
+}
+```
+
 ## Project Structure
 
 ```
@@ -183,3 +275,53 @@ npm run build
 3. Commit your changes
 4. Push to the branch
 5. Create a new Pull Request 
+
+## Pending Tasks
+
+### Frontend
+1. [ ] Implement responsive design for mobile devices
+2. [ ] Add form validation for trip creation/editing
+3. [ ] Implement image upload for trip photos
+4. [ ] Add loading states and error handling
+5. [ ] Implement trip filtering and sorting
+6. [ ] Add trip sharing functionality
+7. [ ] Implement offline support using service workers
+8. [ ] Add user profile management
+9. [ ] Implement trip statistics and analytics
+10. [ ] Add dark mode support
+
+### Backend
+1. [ ] Implement rate limiting
+2. [ ] Add request validation middleware
+3. [ ] Implement file upload service for images
+4. [ ] Add caching layer for frequently accessed data
+5. [ ] Implement email notifications
+6. [ ] Add user roles and permissions
+7. [ ] Implement API versioning
+8. [ ] Add logging service
+9. [ ] Implement backup strategy
+10. [ ] Add health check endpoints
+
+### DevOps
+1. [ ] Set up CI/CD pipeline
+2. [ ] Implement automated testing
+3. [ ] Set up monitoring and alerting
+4. [ ] Configure production deployment
+5. [ ] Set up database backups
+6. [ ] Implement security scanning
+7. [ ] Set up staging environment
+8. [ ] Configure SSL certificates
+9. [ ] Implement containerization
+10. [ ] Set up load balancing
+
+### Documentation
+1. [ ] Add API documentation using Swagger/OpenAPI
+2. [ ] Create user documentation
+3. [ ] Add code documentation
+4. [ ] Create deployment guide
+5. [ ] Document database schema
+6. [ ] Add contribution guidelines
+7. [ ] Create security documentation
+8. [ ] Add troubleshooting guide
+9. [ ] Document testing procedures
+10. [ ] Create architecture decision records (ADRs) 
